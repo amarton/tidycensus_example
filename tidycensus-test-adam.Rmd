@@ -1,0 +1,33 @@
+---
+title: "tidycensus-test-adam"
+author: "Adam Marton"
+date: "1/20/2021"
+output: html_document
+---
+
+# Load packages
+```{r}
+# https://walker-data.com/tidycensus/
+library(tidycensus)
+library(tidyverse)
+# Get an api key
+# https://api.census.gov/data/key_signup.html
+
+# Define API Key
+census_api_key("549950d36c22ff16455fe196bbbd01d63cfbe6cf")
+
+```
+
+# Get available data
+```{r}
+# https://walker-data.com/tidycensus/reference/index.html
+# load acs 2018 with five year average
+acs_variables <- load_variables(2018, "acs5")
+
+# Get the estimate travel time to work less than 5 mins for each state, as percent of total
+state_commute <- get_acs(geography = "state", variables = "B08303_002", summary_var = "B02001_003", geometry = FALSE) %>%
+  mutate(pct_5mins = (estimate/summary_est)*100)
+
+
+```
+

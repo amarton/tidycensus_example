@@ -8,6 +8,7 @@ output: html_document
 # Load packages
 ```{r}
 # https://walker-data.com/tidycensus/
+install.packages("tidycensus")
 library(tidycensus)
 library(tidyverse)
 # Get an api key
@@ -21,7 +22,7 @@ census_api_key("549950d36c22ff16455fe196bbbd01d63cfbe6cf")
 # Get available data
 ```{r}
 # https://walker-data.com/tidycensus/reference/index.html
-
+# load acs 2018 with five year average
 acs_variables <- load_variables(2018, "acs5")
 
 ```
